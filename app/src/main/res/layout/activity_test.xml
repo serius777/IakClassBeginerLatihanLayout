@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- TODO 1.1 Buat Layout
+    buat layout sesuai dengan tampilan yang ada di
+    Online course Udacity Android Basic : User Input
+    Selesai. silahkan compile untuk melihat tampilan layout pada aplikasi
+    setelah itu lanjut ke pin 2.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.hudapc.iak.latihanlayout.TestActivity"
+    android:layout_margin="10dp">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TOPPINGS"
+        android:textSize="10sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+    <CheckBox
+        android:id="@+id/cbWhippedCream"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Whipped Cream"
+        android:textSize="10sp"/>
+    <CheckBox
+        android:id="@+id/cbChocolate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chocolate"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="QUANTITY"
+        android:textSize="10sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bDecrease"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            android:textSize="10sp"
+            android:text="-"/>
+        <TextView
+            android:id="@+id/tvQty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:text="0"/>
+        <Button
+            android:id="@+id/bIncrease"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:textSize="10sp"
+            android:text="+"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ORDER SUMMARY"
+        android:textSize="10sp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"/>
+    <TextView
+        android:id="@+id/tvSummary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:text="..."/>
+    <Button
+        android:id="@+id/bOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="ORDER"
+        />
+    <!-- TODO 3.1 Memberikan event handling ke widget/view Button melalui XML
+    pada widget Button tambahkan
+        android:onClick = "nama_method"
+    contoh
+        android:onClick = "bOrderClicked"
+    tujuannya saat layout ditampilkan pada Activity, lalu widget Button ini ditampilkan,
+    dan pengguna mengklik (event Click terjadi) tombol ini, secara otomatis, aplikasi akan memanggil
+    method dengan nama yang ditulis tadi yang ada di Activity.
+    silahakan lanjut ke Poin 3 berikutnya.
+    -->
+
+    <!-- TODO 4.1 Memberikan event handling ke widget/view Button dengan Inner Class pada Java
+     hapus baris
+          android:onClick = "nama_method"
+     karena kita akan mencoba untuk memberikan Event Handling di dalam kode program.
+     fungsi yang ditulis tidak masalh jika tidak dihapus.
+     lanjut ke poin 4 selanjutnya
+     -->
+
+</LinearLayout>
