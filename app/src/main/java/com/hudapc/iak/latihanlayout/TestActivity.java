@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,8 +14,49 @@ public class TestActivity extends AppCompatActivity
 {
     static final String TAG = TestActivity.class.getSimpleName();
 
+    /**
+     * TODO 5.1 Finishing app
+     * Haous semua perintah yang kita tulis sebelumnya yang ada di dalam method onCreate atau berikan tanda komentar (//).
+     * jangan hapus atau berikan baris komentar (//) pada 2 baris pertama method onCreate.
+     */
+
+    /**
+     * TODO 5.2 Buat global variabel/objek untuk class (class properties)
+     * deklarasikan objek widget yang akan digunakan oleh aplikasi selama beroperasi.
+     * objek widget yang dibuat pada class atau dijadikan class properties dapat digunakan
+     * oleh semua method di dalam class.
+     * objek widget yang harus dibuat adalah:
+     * - 1 EditText, untuk input nama.
+     * - 2 CheckBox, untuk pilihan topping.
+     * - 3 Button, 2 Button untuk mengatur (tambah/kurang) jumlah pesanan, 1 Button untuk membuat laporan pesanan.
+     * - 2 TextView, 1 TextView untuk menampilkan jumlah pesanan, berubah ketika Button +/- di tekan,
+     *         1 TextView untuk menampilkan laporan pesanan setelah Button order ditekan.
+     */
+
+    EditText etName;
+    CheckBox cbWhippedCream;
+    CheckBox cbChocolate;
+    Button bDecrease;
+    Button bIncrease;
+    TextView tvQty;
+    TextView tvSummary;
+    Button bOrder;
+
+    /**
+     * TODO 5.3 Buat global variabel untuk harga kopi dan toppingnya.
+     * kita tentukan harga kopi dan harga topping pada class. sehingga semua method class ini dapat mengambil
+     * atau mengetahui variabel ini. selain itu gunakan kata kunci final agar nilai yang ada di dalam variabelnya
+     * tidak bisa diubah.
+     * kata kunci final akan mencegah kita untuk mengubah nilai yang ada di dalam variabel, sehingga akan ada pesan error
+     * munculsaat proses kompilasi jika kita mencoba untuk mengubah nilai variabel yang memiliki kata kunci final.
+     */
+    final int hargaKopi = 2000;
+    final int hToppingCream = 200;
+    final int hToppingChoco = 500;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
@@ -42,7 +84,32 @@ public class TestActivity extends AppCompatActivity
          * jadi format pemhanggilannya
          * namaObjekWidget = (JenisWidget) findViewById(R.id.id_yang_diset_di_layout_untuk_widget);
          */
-        EditText etName = (EditText) findViewById(R.id.etName);
+        //EditText etName = (EditText) findViewById(R.id.etName);
+
+        /**
+         * TODO 5.3 berikan objek widget yang ada dari layout ke objek widget pada class.
+         * objek widget yang dideklarasikan pada class masih kosong, sehingga belum dapat digunakan.
+         * untuk itu, karena method onCreate dipanggil pertama kali ketika Activity dibuat, alangkah baiknya kita
+         * mengisi objek widget tadi dengan objek widget dari layout di dalam method onCreate. Sehingga
+         * method yang lain dapat menggunakan obje widget class tersebut tanpa terjadi error.
+         */
+        etName = (EditText) findViewById(R.id.etName);
+        cbWhippedCream = (CheckBox) findViewById(R.id.cbWhippedCream);
+        cbChocolate = (CheckBox) findViewById(R.id.cbChocolate);
+        bIncrease = (Button) findViewById(R.id.bIncrease);
+        bDecrease = (Button) findViewById(R.id.bDecrease);
+        tvQty = (TextView) findViewById(R.id.tvQty);
+        tvSummary = (TextView) findViewById(R.id.tvSummary);
+        bOrder = (Button) findViewById(R.id.bOrder);
+
+        /**
+         * Abaikan ini jika menggunakan nama fungsi utuk android:onClick pada Button di dlam XML Layout
+         */
+        OnClickHandler handler = new OnClickHandler();
+        bOrder.setOnClickListener(handler);
+        QtyClickHandler qtyClickHandler = new QtyClickHandler();
+        bIncrease.setOnClickListener(qtyClickHandler);
+        bDecrease.setOnClickListener(qtyClickHandler);
         // cara di atas sama saja dengan cara yang ada pada contoh.
         // kode di atas membuat objek untuk widget EditText dengan nama objek etName, lalu diambil
         // dari layout dengan id etName.
@@ -55,7 +122,7 @@ public class TestActivity extends AppCompatActivity
          * mehod setText(String teks) memerlukan 1 parameter String ketika dipanggil.
          *      namaObjekWidget.setText("tulis teks di sini");
          */
-        etName.setText("Halo IAK");
+
         // kode di atas memanipulasi objek etName dengan memanggil method setText(String teks)-nya.
         // teks yang diberikan adalah Halo IAK
 
@@ -77,8 +144,8 @@ public class TestActivity extends AppCompatActivity
          * Dasar akses dan manipulasi widget/view di layout sudah selesai, silahkan jalankan aplikasi.
          * sebagai tambahan, coba lakukan beberapa percobaan untuk memanipulasi widget sebelum lanjut ke poin 3.
          */
-        TextView tvSummary = (TextView) findViewById(R.id.tvSummary);
-        tvSummary.setText("Detail PEsanan");
+        //TextView tvSummary = (TextView) findViewById(R.id.tvSummary);
+        //tvSummary.setText("Detail PEsanan");
 
         /**
          * TODO 4.3 memberikan objek Button kemampuan untuk menghandle Event Click
@@ -95,10 +162,10 @@ public class TestActivity extends AppCompatActivity
          *    masukkan parameter method itu.
          *      objekWidgetButton.setOnClickListener(objekInnerClass);
          */
-        Button bOrder = (Button) findViewById(R.id.bOrder);
-        OnClickHandler handler = new OnClickHandler();
+        //Button bOrder = (Button) findViewById(R.id.bOrder);
+        //OnClickHandler handler = new OnClickHandler();
         // cara di atas sama dengan contoh nomor 2 dan 3.
-        bOrder.setOnClickListener(handler);
+        //bOrder.setOnClickListener(handler);
 
         // sampai sini poin 4 sudah selesai. kita bisa lanjut ke poin nomor 5. atau sebagai tambahan
         // kita bisa melakukan manipulasi widget ketika Button di klik, atau memanggil method
@@ -110,6 +177,7 @@ public class TestActivity extends AppCompatActivity
         //     }
 
         Toast.makeText(this, "APlikasi Dibuka", Toast.LENGTH_LONG).show();
+        formRefresh();
     }
 
     /** TODO 3.2 membuat fungsi yang akan dipanngil ketika Button diklik
@@ -148,6 +216,11 @@ public class TestActivity extends AppCompatActivity
         // silahkan lanjut ke poin 4
     }
 
+    public void formRefresh()
+    {
+        etName.setText("isi Nama");
+    }
+
     /**
      * TODO 4.2 membuat Inner Class yang menggunakan Interface View.OnClickListener
      * pada dasarnya Event klik di tangani oleh Interface View.OnClickListener. Interface adalah Class
@@ -182,6 +255,44 @@ public class TestActivity extends AppCompatActivity
             //      public void onClick(View view)  // nama parameter tidak apa2 berbeda asalkan Objek
             //           parameternya sama, dalam kasus ini adalah Objek View
             // method ini akan dipanggil oleh sistem ketika Tombol di tekan
+            int qty = 0;
+            int harga = 0;
+            int total = 0;
+
+            String stringQty = tvQty.getText().toString();
+            qty = Integer.valueOf(stringQty);
+            harga = hargaKopi;
+            if(cbWhippedCream.isChecked())
+            {
+                harga = harga + hToppingCream;
+            }
+            if(cbChocolate.isChecked())
+            {
+                harga = harga + hToppingChoco;
+            }
+            total = qty * harga;
+
+            tvSummary.setText("");
+            tvSummary.append("Nama : ");
+            String b;
+            b = etName.getText().toString();
+            tvSummary.append(b);
+            tvSummary.append("\n");
+            tvSummary.append("Topping : ");
+            if(cbWhippedCream.isChecked())
+            {
+                tvSummary.append("-Cream ");
+            }
+            if(cbChocolate.isChecked())
+            {
+                tvSummary.append("-Chocolate ");
+            }
+            tvSummary.append("\n");
+            tvSummary.append("Qty : ");
+            tvSummary.append(String.valueOf(qty));
+            tvSummary.append("\n");
+            tvSummary.append("Total : ");
+            tvSummary.append(String.valueOf(total));
 
             Toast.makeText(TestActivity.this, "Horeee diklik", Toast.LENGTH_LONG).show();
             // coba kita munculkan objek Toast dulu
@@ -213,6 +324,58 @@ public class TestActivity extends AppCompatActivity
             // memiliki garis keturunan yang berbeda (kita bisa asumsikan beda spesies).
             //
             // silakan lanjut ke poin 4 selanjutnya
+        }
+    }
+
+    /**
+     * TODO 5.6 buat method handler sesuai dengan nama method yang ditulis pada layout pada 2 button
+     * disini kita akan membuat 1 method yang mampu menangani 2 button dengan fungsi yang berbeda.
+     * secara umum ketika button di klik, button tersebut mengirim dirinya ke method handler sebelum method handler itu
+     * mengeksekusi perintah yang ditulis di dalmnya.
+     * - button diklik
+     * - sistem mengirim button tadi ke method handler
+     * - eksekusi perintah di dalam method
+     */
+    public void upDateQty(View button)
+    {
+        // handler menerima button melalui parameter. pada saat ini button sudah ada di dalam method handler.
+
+        int qty = 0;
+        String stringQty = tvQty.getText().toString();
+        qty = Integer.valueOf(stringQty);
+        // 3 baris perintah di atas mengambil nilai dari jumlah pesanan yag tertulis pada textview, lalu diubah ke bentuk int
+
+        // sekarang kita cek apakah button yang dikirim ke handler ini button untuk tambah atau mengurangi jumlah pesanan.
+        // caranya kita cek melalui id button yang dikirim itu, apakah idnya sama dengan id untuk button tambah atau kurang.
+        // objekWidget.getId() akan memberikan id dari objek view atau widget.
+        if(button.getId() == R.id.bDecrease)
+        {
+            // ini jika yang ditekan adalah button untuk mengurangi jumlah qty.
+            Toast.makeText(this, "Tombol Kurang", Toast.LENGTH_SHORT).show();
+            qty = qty - 1; //qty--;
+            if(qty < 0)
+            {
+                // jika jumlah qty setelah dikurangi memiliki nilai kurang dari 0,
+                // maka kita set lagi jadi 0, agar jumlah qty tidak minus
+                qty = 0;
+            }
+        }
+        else if(button.getId() == R.id.bIncrease)
+        {
+            // ini jika yang ditekan adalah button untuk menambah jumlah qty.
+            Toast.makeText(this, "Tombol Tambah", Toast.LENGTH_SHORT).show();
+            qty = qty + 1;
+        }
+
+        tvQty.setText(String.valueOf(qty));
+        // sekarang tampilkan qty yang sudah ditambah atau dikurang tadi ke dalam textview
+    }
+
+    public class QtyClickHandler implements View.OnClickListener
+    {
+        public void onClick(View button)
+        {
+            upDateQty(button);
         }
     }
 }

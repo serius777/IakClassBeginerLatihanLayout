@@ -49,7 +49,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
+        <!-- TODO 5.4 Berikan action handler untuk 2 button ini
+                Berikan android:onClick ="nama_method_qty" untuk kedua button yang digunakan untuk menmabah
+                atau mengrangkan jumlah pesanan.
+                gunakan nama method yang sama untuk 2 button ini.
+                sebagai contoh, saya menggunakan android:onClick"upDateQty" untuk 2 button ini.
+                abaikan jika tidak menggunakan action handler dari xml.
+        -->
         <Button
             android:id="@+id/bDecrease"
             android:layout_width="40dp"
@@ -86,6 +92,11 @@
         android:layout_height="wrap_content"
         android:textSize="10sp"
         android:text="..."/>
+    <!-- TODO 5.4 Berikan action handler untuk button ini
+                Berikan android:onClick ="nama_method_summary" untuk button ini.
+                nama method ini tidak boleh sama dengan nama method untuk 2 button sebelumnya.
+                abaikan jika tidak menggunakan action handler dari xml.
+        -->
     <Button
         android:id="@+id/bOrder"
         android:layout_width="wrap_content"
@@ -93,6 +104,7 @@
         android:textSize="12sp"
         android:textStyle="bold"
         android:text="ORDER"
+        android:onClick=""
         />
     <!-- TODO 3.1 Memberikan event handling ke widget/view Button melalui XML
     pada widget Button tambahkan
